@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+        <com.bsecure.apha.common.CircularImageView
+            android:id="@+id/user_profile_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-60dp"
+            android:background="@mipmap/user_pic"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_cover_image"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+
+            <TextView
+                android:id="@+id/user_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="76dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/design"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_profile_name"
+                android:fontFamily="@font/roboto"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:visibility="gone" />
+            <LinearLayout
+                android:id="@+id/user_profile_short_bio1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:padding="5dp"
+                android:layout_below="@+id/design">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Business:"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:textColor="@color/white"/>
+                <LinearLayout
+                    android:id="@+id/user_profile_short_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:orientation="vertical"
+                    android:layout_gravity="left|center"
+                    android:text="name"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/user_profile_desi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_profile_short_bio1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/roboto"
+                android:text="name"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_layout"
+            android:background="@color/white">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleinfo"
+                        android:background="@color/white"
+                        android:drawablePadding="10dp"
+                        android:drawableTint="@color/textGray"
+                        android:fontFamily="@font/roboto"
+                        android:padding="10dp"
+                        android:text="Contact"
+                        android:textSize="9pt" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleinfo"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/i_cphone"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:padding="8dp"
+                        android:textColor="@color/transparent_black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/transparent_gray" />
+
+                    <TextView
+                        android:id="@+id/statet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleinfo"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/i_cplace"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="@font/roboto"
+                        android:padding="10dp"
+                        android:textColor="@color/transparent_black"
+                        android:textSize="15dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/transparent_gray" />
+
+                    <TextView
+                        android:id="@+id/distet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleinfo"
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/ic_web"
+                        android:drawablePadding="10dp"
+                        android:drawableTint="@color/black"
+                        android:fontFamily="@font/roboto"
+                        android:padding="10dp"
+                        android:textColor="@color/transparent_black"
+                        android:textSize="15dp"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

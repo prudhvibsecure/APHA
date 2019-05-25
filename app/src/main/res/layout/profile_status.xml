@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/colorPrimaryDark">
+
+        <com.bsecure.apha.common.CircularImageView
+            android:id="@+id/pf_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@mipmap/user_pic"
+            android:src="@mipmap/user_pic" />
+
+        <TextView
+            android:id="@+id/profile_dest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pf_img"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/shape_name_ed"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Name"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_name"
+                android:fontFamily="@font/roboto"
+                android:padding="8dp"
+                android:text="Name"
+                android:textSize="7pt" />
+
+            <EditText
+                android:id="@+id/u_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edite_backview"
+                android:cursorVisible="false"
+                android:fontFamily="@font/roboto"
+                android:hint="Enter Name"
+                android:inputType="textPersonName"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/transparent_black" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_name"
+                android:fontFamily="@font/roboto"
+                android:padding="8dp"
+                android:text="Phone number"
+                android:textSize="7pt" />
+
+            <EditText
+                android:id="@+id/u_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edite_backview"
+                android:clickable="false"
+                android:editable="false"
+                android:focusable="false"
+                android:fontFamily="@font/roboto"
+                android:hint="Enter phone number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/transparent_black" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_name"
+                android:fontFamily="@font/roboto"
+                android:padding="8dp"
+                android:text="Business name"
+                android:textSize="7pt" />
+
+            <EditText
+                android:id="@+id/u_bus_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:hint="Enter business name"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/transparent_black" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_name"
+                android:fontFamily="@font/roboto"
+                android:padding="8dp"
+                android:text="@string/statec"
+                android:textSize="7pt" />
+
+            <EditText
+                android:id="@+id/state_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edite_backview"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:focusable="false"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColor="@color/transparent_black" />
+
+            <TextView
+                android:id="@+id/submt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/t_shape"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Submit"
+                android:textColor="@color/colorPrimary" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

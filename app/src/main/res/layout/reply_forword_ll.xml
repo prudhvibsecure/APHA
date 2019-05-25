@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/rep_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_reply"
+        android:drawablePadding="15dp"
+        android:drawableTint="@color/transparent_black"
+        android:fontFamily="@font/roboto"
+        android:padding="10dp"
+        android:text="Reply"
+        android:textColor="@color/transparent_black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".2dp"
+        android:background="@color/transparent_black" />
+
+    <TextView
+        android:id="@+id/rep_11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_reply"
+        android:drawablePadding="15dp"
+        android:drawableTint="@color/transparent_black"
+        android:fontFamily="@font/roboto"
+        android:padding="10dp"
+        android:text="Reply All"
+        android:visibility="gone"
+        android:textColor="@color/transparent_black"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".2dp"
+        android:background="@color/transparent_black" />
+
+    <TextView
+        android:id="@+id/forward_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_forward"
+        android:drawablePadding="15dp"
+        android:drawableTint="@color/transparent_black"
+        android:fontFamily="@font/roboto"
+        android:padding="10dp"
+        android:text="Forward"
+        android:textColor="@color/transparent_black"
+        android:textSize="16sp" />
+
+</LinearLayout>

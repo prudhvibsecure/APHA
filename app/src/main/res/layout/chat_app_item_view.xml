@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_list_row"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="1dp">
+
+
+    <LinearLayout
+        android:id="@+id/d_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/headerview" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_left_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <include layout="@layout/chat_user2_item" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_right_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <include layout="@layout/chat_user1_item" />
+    </LinearLayout>
+
+
+</LinearLayout>

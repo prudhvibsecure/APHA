@@ -1,0 +1,192 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_list_row"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:padding="1dp">
+
+
+    <LinearLayout
+        android:id="@+id/d_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/headerview" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_left_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <include layout="@layout/chat_user2_item" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_right_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <include layout="@layout/chat_user1_item" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/chat_right_Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/item_message_left_img" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_left_Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/item_message_right_img" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/chat_right_voice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/voice_message_rec" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_left_voice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/voice_message" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/documet_right_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/documents_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/documet_left_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/document_left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reply_l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_send_ll" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reply_l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_receive_ll" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reply_l1_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_send_image" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reply_l2_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_receive_image" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/reply_l1_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_send_doc" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reply_l2_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <include layout="@layout/reply_recv_doc" />
+    </LinearLayout>
+
+</LinearLayout>

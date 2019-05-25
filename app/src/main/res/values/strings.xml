@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">APHA</string>
+    <string name="apha"> APHA </string>
+    <string name="vips"> ELITE </string>
+    <string name="news"> NEWS </string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="statec">City &amp; State</string>
+    <string name="APPR">APPROVED</string>
+    <string name="LIS">PENDING</string>
+
+    <string name="nipcyns">No Internet, Please check your network settings</string>
+    <string name="notwork">No connection</string>
+    <string name="pesk">Please enter search key</string>
+    <string name="isr">Invalid server response</string>
+    <string name="sct">Server connection timeout.!</string>
+    <string name="snr1">Server not reachable.!</string>
+    <string name="iurl">Invalid URL</string>
+    <string name="snr2">Server not reachable.!!</string>
+    <string name="snr3">Unable to connect please try again.!!!</string>
+    <string name="notification_channel_id">default</string>
+    <string name="file_limit_size_upload_format">Files must be less than %sMB</string>
+    <string name="chooser_title">Select browser</string>
+    <string name="payment">Payment</string>
+</resources>

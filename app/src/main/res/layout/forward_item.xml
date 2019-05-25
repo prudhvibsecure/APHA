@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_user"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:id="@+id/contact_image_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.bsecure.apha.common.CircularImageView
+            android:id="@+id/contact_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_add_m" />
+
+        <CheckBox
+            android:id="@+id/chk_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/contact_image"
+            android:layout_alignRight="@+id/contact_image"
+            android:layout_alignBottom="@+id/contact_image"
+            android:background="@drawable/cust_check"
+            android:button="@android:color/transparent"
+            android:gravity="end|bottom|right"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/contact_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/contact_image_ll"
+        android:layout_toRightOf="@+id/contact_image_ll"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
+            android:gravity="left"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="Prudhvi"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/contact_ph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
+            android:gravity="left"
+            android:paddingLeft="5dp"
+            android:text="(No Number)"
+            android:textColor="@android:color/black"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

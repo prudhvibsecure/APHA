@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contact_user_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
+
+        <ImageView
+            android:id="@+id/icon_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_circle"
+            android:gravity="center"
+            android:text="DP" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/cl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="District President"
+                android:textColor="@color/transparent_black"
+                android:textSize="8pt"
+                android:padding="2dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/dis_imge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_camera1"
+                    android:tint="@color/textGray"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/last_msg_v"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:singleLine="true"
+                    android:text="dkskdfklsdflkaslkfalkf"
+                    android:textColor="@color/textGray"
+                    android:textStyle="normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/st_tps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="15dp"
+            android:layout_weight=".3"
+            android:textSize="11sp"
+            android:gravity="top|center" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".8dp"
+        android:layout_marginLeft="75dp"
+        android:background="@color/textGray" />
+
+
+</LinearLayout>

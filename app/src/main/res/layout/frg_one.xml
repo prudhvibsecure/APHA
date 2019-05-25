@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<include-->
+        <!--android:id="@+id/st_ll"-->
+        <!--layout="@layout/state_presedent" />-->
+
+    <!--<include-->
+        <!--android:id="@+id/dist_p_ll"-->
+        <!--layout="@layout/district_presiden" />-->
+
+    <!--<include-->
+        <!--android:id="@+id/dist_ec_ll"-->
+        <!--layout="@layout/district_ec" />-->
+
+    <!--<include-->
+        <!--android:id="@+id/member_ll"-->
+        <!--layout="@layout/all_member" />-->
+
+    <!--<include-->
+        <!--android:id="@+id/state_ec_ll"-->
+        <!--layout="@layout/state_ec" />-->
+
+</LinearLayout>

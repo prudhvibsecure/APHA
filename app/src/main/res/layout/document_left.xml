@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:layout_marginRight="50dp"
+    android:background="@drawable/right_img_back"
+    android:gravity="left"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/fd_doc_rt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_forward"
+        android:drawablePadding="5dp"
+        android:paddingLeft="5dp"
+        android:text="Forward"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tk_name_doc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fd_doc_rt"
+        android:autoLink="web"
+        android:paddingLeft="5dp"
+        android:text="Raj"
+        android:textColor="@color/purpul"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/doc_img_rec"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_ffile" />
+
+            <TextView
+                android:id="@+id/doc_name_rec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="left|center"
+                android:padding="8dp"
+                android:textSize="15sp"
+                android:textColor="@color/transparent_black"
+                android:fontFamily="@font/roboto"
+                android:paddingLeft="10dp"
+                android:text="doc name" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/timestamp_doc_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:text="11:15 PM"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+
+</LinearLayout>

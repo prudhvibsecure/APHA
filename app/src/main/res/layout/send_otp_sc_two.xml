@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_login_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ios_rect_logo" />
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_input_bg"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/f_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:hint="Member Name"
+                android:inputType="text"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/f_member_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:hint="Member Id"
+                android:inputType="text"
+                android:maxLength="10"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/f_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:hint="Mobile Number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/f_business"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:hint="Business Name"
+                android:inputType="text"
+                android:maxLength="50"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="#000" />
+
+            <com.bsecure.apha.common.NoDefaultSpinner
+                android:id="@+id/f_state"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:padding="10dp"
+                android:singleLine="true" />
+
+            <com.bsecure.apha.common.NoDefaultSpinner
+                android:id="@+id/f_dist"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/f_otp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:hint="OTP"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="#000"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/send_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Submit"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edite_backview"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Register"
+                android:textColor="@color/colorPrimaryDark"
+                android:visibility="gone" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

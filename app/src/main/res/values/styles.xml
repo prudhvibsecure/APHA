@@ -1,0 +1,33 @@
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base" />
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/transparent_black</item>
+        <item name="android:textColorPrimary">@color/textGray</item>
+        <item name="android:textColorSecondary">#fff</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+        <item name="tabBackground">@drawable/apptheme_btn_default_holo_light</item>
+        <item name="tabIndicatorColor">@color/main_green_color</item>
+        <item name="tabIndicatorHeight">2dp</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="colorAccent">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+</resources>
