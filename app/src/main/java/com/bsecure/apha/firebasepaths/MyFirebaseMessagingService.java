@@ -199,7 +199,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 String imageUrl = data.optString("image");
                 String message_data = data.getString("message");
-                JSONObject object = new JSONObject(message_data.toString());
+                JSONObject object = new JSONObject(message_data);
                 messsages = object.optString("msg");
                 String title_msg = object.optString("msg_det");
                 String arry_data[] = title_msg.split("\\*");

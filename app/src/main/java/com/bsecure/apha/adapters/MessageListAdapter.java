@@ -1,10 +1,12 @@
 package com.bsecure.apha.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -212,7 +214,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         contactViewHolder.vi_play.setVisibility(View.GONE);
                         //String date = df.format(Calendar.getInstance().getTime());
                         contactViewHolder.timestamp_vc_send.setText(getDate(Long.parseLong(chatList.getMessage_date())));
-                        final String uri = Paths.up_load + chatList.getMessage();
+                        final String uriss = Paths.up_load + chatList.getMessage();
                         if (chatList.getForward_status().equalsIgnoreCase("1")) {
                             contactViewHolder.fd_voice_lt.setVisibility(View.VISIBLE);
                         } else {
@@ -220,117 +222,126 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         }
                         contactViewHolder.ply_btn.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
-
-                                try {
-
-
-                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                        clearMediaPlayer();
-                                        contactViewHolder.seekBar.setProgress(0);
-                                        wasPlaying = true;
-                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    }
-
-
-                                    if (!wasPlaying) {
-
-                                        if (mediaPlayer == null) {
-                                            mediaPlayer = new MediaPlayer();
-                                        }
-
-                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
-
-                                        //AssetFileDescriptor descriptor = context.getAssets().openFd(uri.toString());
-                                        mediaPlayer.setDataSource(uri.toString());
-
-                                        mediaPlayer.prepare();
-                                        mediaPlayer.setVolume(0.5f, 0.5f);
-                                        mediaPlayer.setLooping(false);
-                                        contactViewHolder.seekBar.setMax(mediaPlayer.getDuration());
-
-                                        mediaPlayer.start();
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                int currentPosition = mediaPlayer.getCurrentPosition();
-                                                int total = mediaPlayer.getDuration();
-
-
-                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
-                                                    try {
-                                                        Thread.sleep(1000);
-                                                        currentPosition = mediaPlayer.getCurrentPosition();
-                                                    } catch (InterruptedException e) {
-                                                        return;
-                                                    } catch (Exception e) {
-                                                        return;
-                                                    }
-
-                                                    contactViewHolder.seekBar.setProgress(currentPosition);
-
-                                                }
-                                            }
-                                        }).start();
-
-                                    }
-
-                                    wasPlaying = false;
-                                } catch (Exception e) {
-                                    clearMediaPlayer();
-                                    contactViewHolder.seekBar.setProgress(0);
-                                    wasPlaying = true;
-                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    e.printStackTrace();
-
-                                }
-                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(uriss);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setDataAndType(uri, "audio/*");
+                                context.startActivity(intent);
                             }
                         });
-
-                        contactViewHolder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
-                                int x = (int) Math.ceil(progress / 1000f);
-
-                                if (x < 10)
-                                    contactViewHolder.timer_t.setText("0:0" + x);
-                                else
-                                    contactViewHolder.timer_t.setText("0:" + x);
-
-                                double percent = progress / (double) seekBar.getMax();
-                                int offset = seekBar.getThumbOffset();
-                                int seekWidth = seekBar.getWidth();
-                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
-                                int labelWidth = contactViewHolder.timer_t.getWidth();
-                                contactViewHolder.timer_t.setX(offset + seekBar.getX() + val
-                                        - Math.round(percent * offset)
-                                        - Math.round(percent * labelWidth / 2));
-
-                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
-                                    clearMediaPlayer();
-                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    seekBar.setProgress(0);
-                                }
-
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-
-
-                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                    mediaPlayer.seekTo(seekBar.getProgress());
-                                }
-                            }
-                        });
+//                        contactViewHolder.ply_btn.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                try {
+//
+//
+//                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                        clearMediaPlayer();
+//                                        contactViewHolder.seekBar.setProgress(0);
+//                                        wasPlaying = true;
+//                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    }
+//
+//
+//                                    if (!wasPlaying) {
+//
+//                                        if (mediaPlayer == null) {
+//                                            mediaPlayer = new MediaPlayer();
+//                                        }
+//
+//                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
+//
+//                                        //AssetFileDescriptor descriptor = context.getAssets().openFd(uri.toString());
+//                                        mediaPlayer.setDataSource(uri.toString());
+//
+//                                        mediaPlayer.prepare();
+//                                        mediaPlayer.setVolume(0.5f, 0.5f);
+//                                        mediaPlayer.setLooping(false);
+//                                        contactViewHolder.seekBar.setMax(mediaPlayer.getDuration());
+//
+//                                        mediaPlayer.start();
+//                                        new Thread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                int currentPosition = mediaPlayer.getCurrentPosition();
+//                                                int total = mediaPlayer.getDuration();
+//
+//
+//                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
+//                                                    try {
+//                                                        Thread.sleep(1000);
+//                                                        currentPosition = mediaPlayer.getCurrentPosition();
+//                                                    } catch (InterruptedException e) {
+//                                                        return;
+//                                                    } catch (Exception e) {
+//                                                        return;
+//                                                    }
+//
+//                                                    contactViewHolder.seekBar.setProgress(currentPosition);
+//
+//                                                }
+//                                            }
+//                                        }).start();
+//
+//                                    }
+//
+//                                    wasPlaying = false;
+//                                } catch (Exception e) {
+//                                    clearMediaPlayer();
+//                                    contactViewHolder.seekBar.setProgress(0);
+//                                    wasPlaying = true;
+//                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    e.printStackTrace();
+//
+//                                }
+//                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//                        contactViewHolder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                            @Override
+//                            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
+//                            }
+//
+//                            @Override
+//                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+//                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
+//                                int x = (int) Math.ceil(progress / 1000f);
+//
+//                                if (x < 10)
+//                                    contactViewHolder.timer_t.setText("0:0" + x);
+//                                else
+//                                    contactViewHolder.timer_t.setText("0:" + x);
+//
+//                                double percent = progress / (double) seekBar.getMax();
+//                                int offset = seekBar.getThumbOffset();
+//                                int seekWidth = seekBar.getWidth();
+//                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
+//                                int labelWidth = contactViewHolder.timer_t.getWidth();
+//                                contactViewHolder.timer_t.setX(offset + seekBar.getX() + val
+//                                        - Math.round(percent * offset)
+//                                        - Math.round(percent * labelWidth / 2));
+//
+//                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
+//                                    clearMediaPlayer();
+//                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    seekBar.setProgress(0);
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//
+//                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                    mediaPlayer.seekTo(seekBar.getProgress());
+//                                }
+//                            }
+//                        });
                     } else {
 
                         contactViewHolder.leftMsgLayout.setVisibility(View.GONE);
@@ -520,116 +531,125 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         }
                         contactViewHolder.timestamp_vc_send.setText(getDate(Long.parseLong(chatList.getMessage_date())));
 
-                        final String uri = Paths.up_load + chatList.getMessage();
+                        final String uriss = Paths.up_load + chatList.getMessage();
                         contactViewHolder.ply_btn.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
-
-                                try {
-
-
-                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                        clearMediaPlayer();
-                                        contactViewHolder.seekBar.setProgress(0);
-                                        wasPlaying = true;
-                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    }
-
-
-                                    if (!wasPlaying) {
-
-                                        if (mediaPlayer == null) {
-                                            mediaPlayer = new MediaPlayer();
-                                        }
-
-                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
-
-                                        //AssetFileDescriptor descriptor = context.getAssets().openFd(uri.toString());
-                                        mediaPlayer.setDataSource(uri.toString());
-
-                                        mediaPlayer.prepare();
-                                        mediaPlayer.setVolume(0.5f, 0.5f);
-                                        mediaPlayer.setLooping(false);
-                                        contactViewHolder.seekBar.setMax(mediaPlayer.getDuration());
-
-                                        mediaPlayer.start();
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                int currentPosition = mediaPlayer.getCurrentPosition();
-                                                int total = mediaPlayer.getDuration();
-
-
-                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
-                                                    try {
-                                                        Thread.sleep(1000);
-                                                        currentPosition = mediaPlayer.getCurrentPosition();
-                                                    } catch (InterruptedException e) {
-                                                        return;
-                                                    } catch (Exception e) {
-                                                        return;
-                                                    }
-
-                                                    contactViewHolder.seekBar.setProgress(currentPosition);
-
-                                                }
-                                            }
-                                        }).start();
-
-                                    }
-
-                                    wasPlaying = false;
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-
-                                }
-                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(uriss);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setDataAndType(uri, "audio/*");
+                                context.startActivity(intent);
                             }
                         });
-
-                        contactViewHolder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
-                                int x = (int) Math.ceil(progress / 1000f);
-
-                                if (x < 10)
-                                    contactViewHolder.timer_t.setText("0:0" + x);
-                                else
-                                    contactViewHolder.timer_t.setText("0:" + x);
-
-                                double percent = progress / (double) seekBar.getMax();
-                                int offset = seekBar.getThumbOffset();
-                                int seekWidth = seekBar.getWidth();
-                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
-                                int labelWidth = contactViewHolder.timer_t.getWidth();
-                                contactViewHolder.timer_t.setX(offset + seekBar.getX() + val
-                                        - Math.round(percent * offset)
-                                        - Math.round(percent * labelWidth / 2));
-
-                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
-                                    clearMediaPlayer();
-                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    seekBar.setProgress(0);
-                                }
-
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-
-
-                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                    mediaPlayer.seekTo(seekBar.getProgress());
-                                }
-                            }
-                        });
+//                        contactViewHolder.ply_btn.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                try {
+//
+//
+//                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                        clearMediaPlayer();
+//                                        contactViewHolder.seekBar.setProgress(0);
+//                                        wasPlaying = true;
+//                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    }
+//
+//
+//                                    if (!wasPlaying) {
+//
+//                                        if (mediaPlayer == null) {
+//                                            mediaPlayer = new MediaPlayer();
+//                                        }
+//
+//                                        contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
+//
+//                                        //AssetFileDescriptor descriptor = context.getAssets().openFd(uri.toString());
+//                                        mediaPlayer.setDataSource(uri.toString());
+//
+//                                        mediaPlayer.prepare();
+//                                        mediaPlayer.setVolume(0.5f, 0.5f);
+//                                        mediaPlayer.setLooping(false);
+//                                        contactViewHolder.seekBar.setMax(mediaPlayer.getDuration());
+//
+//                                        mediaPlayer.start();
+//                                        new Thread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                int currentPosition = mediaPlayer.getCurrentPosition();
+//                                                int total = mediaPlayer.getDuration();
+//
+//
+//                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
+//                                                    try {
+//                                                        Thread.sleep(1000);
+//                                                        currentPosition = mediaPlayer.getCurrentPosition();
+//                                                    } catch (InterruptedException e) {
+//                                                        return;
+//                                                    } catch (Exception e) {
+//                                                        return;
+//                                                    }
+//
+//                                                    contactViewHolder.seekBar.setProgress(currentPosition);
+//
+//                                                }
+//                                            }
+//                                        }).start();
+//
+//                                    }
+//
+//                                    wasPlaying = false;
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//
+//                                }
+//                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//                        contactViewHolder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                            @Override
+//                            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
+//                            }
+//
+//                            @Override
+//                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+//                                contactViewHolder.timer_t.setVisibility(View.VISIBLE);
+//                                int x = (int) Math.ceil(progress / 1000f);
+//
+//                                if (x < 10)
+//                                    contactViewHolder.timer_t.setText("0:0" + x);
+//                                else
+//                                    contactViewHolder.timer_t.setText("0:" + x);
+//
+//                                double percent = progress / (double) seekBar.getMax();
+//                                int offset = seekBar.getThumbOffset();
+//                                int seekWidth = seekBar.getWidth();
+//                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
+//                                int labelWidth = contactViewHolder.timer_t.getWidth();
+//                                contactViewHolder.timer_t.setX(offset + seekBar.getX() + val
+//                                        - Math.round(percent * offset)
+//                                        - Math.round(percent * labelWidth / 2));
+//
+//                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
+//                                    clearMediaPlayer();
+//                                    contactViewHolder.ply_btn.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    seekBar.setProgress(0);
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//
+//                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                    mediaPlayer.seekTo(seekBar.getProgress());
+//                                }
+//                            }
+//                        });
 
                     } else {
                         contactViewHolder.vi_play.setVisibility(View.GONE);
@@ -776,113 +796,122 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         contactViewHolder.voice_time_rec.setText(getDate(Long.parseLong(chatList.getMessage_date())));
                         contactViewHolder.ply_btn_rec.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
-
-                                try {
-
-
-                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                        clearMediaPlayer();
-                                        contactViewHolder.seekBar_rec.setProgress(0);
-                                        wasPlaying = true;
-                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    }
-
-
-                                    if (!wasPlaying) {
-
-                                        if (mediaPlayer == null) {
-                                            mediaPlayer = new MediaPlayer();
-                                        }
-
-                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
-                                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                                        mediaPlayer.setDataSource(url_voice);
-
-                                        mediaPlayer.prepare();
-                                        mediaPlayer.setVolume(0.5f, 0.5f);
-                                        mediaPlayer.setLooping(false);
-                                        contactViewHolder.seekBar_rec.setMax(mediaPlayer.getDuration());
-
-                                        mediaPlayer.start();
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                int currentPosition = mediaPlayer.getCurrentPosition();
-                                                int total = mediaPlayer.getDuration();
-
-
-                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
-                                                    try {
-                                                        Thread.sleep(1000);
-                                                        currentPosition = mediaPlayer.getCurrentPosition();
-                                                    } catch (InterruptedException e) {
-                                                        return;
-                                                    } catch (Exception e) {
-                                                        return;
-                                                    }
-
-                                                    contactViewHolder.seekBar_rec.setProgress(currentPosition);
-
-                                                }
-                                            }
-                                        }).start();
-
-                                    }
-
-                                    wasPlaying = false;
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-
-                                }
-                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(url_voice);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setDataAndType(uri, "audio/*");
+                                context.startActivity(intent);
                             }
                         });
-
-
-                        contactViewHolder.seekBar_rec.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
-                                int x = (int) Math.ceil(progress / 1000f);
-
-                                if (x < 10)
-                                    contactViewHolder.timer_t_rec.setText("0:0" + x);
-                                else
-                                    contactViewHolder.timer_t_rec.setText("0:" + x);
-
-                                double percent = progress / (double) seekBar.getMax();
-                                int offset = seekBar.getThumbOffset();
-                                int seekWidth = seekBar.getWidth();
-                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
-                                int labelWidth = contactViewHolder.timer_t_rec.getWidth();
-                                contactViewHolder.timer_t_rec.setX(offset + seekBar.getX() + val
-                                        - Math.round(percent * offset)
-                                        - Math.round(percent * labelWidth / 2));
-
-                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
-                                    clearMediaPlayer();
-                                    contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    seekBar.setProgress(0);
-                                }
-
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-
-
-                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                    mediaPlayer.seekTo(seekBar.getProgress());
-                                }
-                            }
-                        });
+//                        contactViewHolder.ply_btn_rec.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                try {
+//
+//
+//                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                        clearMediaPlayer();
+//                                        contactViewHolder.seekBar_rec.setProgress(0);
+//                                        wasPlaying = true;
+//                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    }
+//
+//
+//                                    if (!wasPlaying) {
+//
+//                                        if (mediaPlayer == null) {
+//                                            mediaPlayer = new MediaPlayer();
+//                                        }
+//
+//                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
+//                                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                                        mediaPlayer.setDataSource(url_voice);
+//
+//                                        mediaPlayer.prepare();
+//                                        mediaPlayer.setVolume(0.5f, 0.5f);
+//                                        mediaPlayer.setLooping(false);
+//                                        contactViewHolder.seekBar_rec.setMax(mediaPlayer.getDuration());
+//
+//                                        mediaPlayer.start();
+//                                        new Thread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                int currentPosition = mediaPlayer.getCurrentPosition();
+//                                                int total = mediaPlayer.getDuration();
+//
+//
+//                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
+//                                                    try {
+//                                                        Thread.sleep(1000);
+//                                                        currentPosition = mediaPlayer.getCurrentPosition();
+//                                                    } catch (InterruptedException e) {
+//                                                        return;
+//                                                    } catch (Exception e) {
+//                                                        return;
+//                                                    }
+//
+//                                                    contactViewHolder.seekBar_rec.setProgress(currentPosition);
+//
+//                                                }
+//                                            }
+//                                        }).start();
+//
+//                                    }
+//
+//                                    wasPlaying = false;
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//
+//                                }
+//                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//
+//                        contactViewHolder.seekBar_rec.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                            @Override
+//                            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
+//                            }
+//
+//                            @Override
+//                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+//                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
+//                                int x = (int) Math.ceil(progress / 1000f);
+//
+//                                if (x < 10)
+//                                    contactViewHolder.timer_t_rec.setText("0:0" + x);
+//                                else
+//                                    contactViewHolder.timer_t_rec.setText("0:" + x);
+//
+//                                double percent = progress / (double) seekBar.getMax();
+//                                int offset = seekBar.getThumbOffset();
+//                                int seekWidth = seekBar.getWidth();
+//                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
+//                                int labelWidth = contactViewHolder.timer_t_rec.getWidth();
+//                                contactViewHolder.timer_t_rec.setX(offset + seekBar.getX() + val
+//                                        - Math.round(percent * offset)
+//                                        - Math.round(percent * labelWidth / 2));
+//
+//                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
+//                                    clearMediaPlayer();
+//                                    contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    seekBar.setProgress(0);
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//
+//                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                    mediaPlayer.seekTo(seekBar.getProgress());
+//                                }
+//                            }
+//                        });
                     } else {
                         contactViewHolder.rightMsgLayout.setVisibility(View.GONE);
                         contactViewHolder.vi_play.setVisibility(View.GONE);
@@ -987,113 +1016,122 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                         }
                         contactViewHolder.ply_btn_rec.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v) {
-
-                                try {
-
-
-                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                        clearMediaPlayer();
-                                        contactViewHolder.seekBar_rec.setProgress(0);
-                                        wasPlaying = true;
-                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    }
-
-
-                                    if (!wasPlaying) {
-
-                                        if (mediaPlayer == null) {
-                                            mediaPlayer = new MediaPlayer();
-                                        }
-
-                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
-                                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                                        mediaPlayer.setDataSource(url_voice);
-
-                                        mediaPlayer.prepare();
-                                        mediaPlayer.setVolume(0.5f, 0.5f);
-                                        mediaPlayer.setLooping(false);
-                                        contactViewHolder.seekBar_rec.setMax(mediaPlayer.getDuration());
-
-                                        mediaPlayer.start();
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                int currentPosition = mediaPlayer.getCurrentPosition();
-                                                int total = mediaPlayer.getDuration();
-
-
-                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
-                                                    try {
-                                                        Thread.sleep(1000);
-                                                        currentPosition = mediaPlayer.getCurrentPosition();
-                                                    } catch (InterruptedException e) {
-                                                        return;
-                                                    } catch (Exception e) {
-                                                        return;
-                                                    }
-
-                                                    contactViewHolder.seekBar_rec.setProgress(currentPosition);
-
-                                                }
-                                            }
-                                        }).start();
-
-                                    }
-
-                                    wasPlaying = false;
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-
-                                }
-                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+                            public void onClick(View view) {
+                                Uri uri = Uri.parse(url_voice);
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                intent.setDataAndType(uri, "audio/*");
+                                context.startActivity(intent);
                             }
                         });
-
-
-                        contactViewHolder.seekBar_rec.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                            @Override
-                            public void onStartTrackingTouch(SeekBar seekBar) {
-
-                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
-                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
-                                int x = (int) Math.ceil(progress / 1000f);
-
-                                if (x < 10)
-                                    contactViewHolder.timer_t_rec.setText("0:0" + x);
-                                else
-                                    contactViewHolder.timer_t_rec.setText("0:" + x);
-
-                                double percent = progress / (double) seekBar.getMax();
-                                int offset = seekBar.getThumbOffset();
-                                int seekWidth = seekBar.getWidth();
-                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
-                                int labelWidth = contactViewHolder.timer_t_rec.getWidth();
-                                contactViewHolder.timer_t_rec.setX(offset + seekBar.getX() + val
-                                        - Math.round(percent * offset)
-                                        - Math.round(percent * labelWidth / 2));
-
-                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
-                                    clearMediaPlayer();
-                                    contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
-                                    seekBar.setProgress(0);
-                                }
-
-                            }
-
-                            @Override
-                            public void onStopTrackingTouch(SeekBar seekBar) {
-
-
-                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                    mediaPlayer.seekTo(seekBar.getProgress());
-                                }
-                            }
-                        });
+//                        contactViewHolder.ply_btn_rec.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//
+//                                try {
+//
+//
+//                                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                        clearMediaPlayer();
+//                                        contactViewHolder.seekBar_rec.setProgress(0);
+//                                        wasPlaying = true;
+//                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    }
+//
+//
+//                                    if (!wasPlaying) {
+//
+//                                        if (mediaPlayer == null) {
+//                                            mediaPlayer = new MediaPlayer();
+//                                        }
+//
+//                                        contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.pause_btn));
+//                                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                                        mediaPlayer.setDataSource(url_voice);
+//
+//                                        mediaPlayer.prepare();
+//                                        mediaPlayer.setVolume(0.5f, 0.5f);
+//                                        mediaPlayer.setLooping(false);
+//                                        contactViewHolder.seekBar_rec.setMax(mediaPlayer.getDuration());
+//
+//                                        mediaPlayer.start();
+//                                        new Thread(new Runnable() {
+//                                            @Override
+//                                            public void run() {
+//                                                int currentPosition = mediaPlayer.getCurrentPosition();
+//                                                int total = mediaPlayer.getDuration();
+//
+//
+//                                                while (mediaPlayer != null && mediaPlayer.isPlaying() && currentPosition < total) {
+//                                                    try {
+//                                                        Thread.sleep(1000);
+//                                                        currentPosition = mediaPlayer.getCurrentPosition();
+//                                                    } catch (InterruptedException e) {
+//                                                        return;
+//                                                    } catch (Exception e) {
+//                                                        return;
+//                                                    }
+//
+//                                                    contactViewHolder.seekBar_rec.setProgress(currentPosition);
+//
+//                                                }
+//                                            }
+//                                        }).start();
+//
+//                                    }
+//
+//                                    wasPlaying = false;
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//
+//                                }
+//                                //Toast.makeText(context, "under process", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//
+//
+//                        contactViewHolder.seekBar_rec.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                            @Override
+//                            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
+//                            }
+//
+//                            @Override
+//                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
+//                                contactViewHolder.timer_t_rec.setVisibility(View.VISIBLE);
+//                                int x = (int) Math.ceil(progress / 1000f);
+//
+//                                if (x < 10)
+//                                    contactViewHolder.timer_t_rec.setText("0:0" + x);
+//                                else
+//                                    contactViewHolder.timer_t_rec.setText("0:" + x);
+//
+//                                double percent = progress / (double) seekBar.getMax();
+//                                int offset = seekBar.getThumbOffset();
+//                                int seekWidth = seekBar.getWidth();
+//                                int val = (int) Math.round(percent * (seekWidth - 2 * offset));
+//                                int labelWidth = contactViewHolder.timer_t_rec.getWidth();
+//                                contactViewHolder.timer_t_rec.setX(offset + seekBar.getX() + val
+//                                        - Math.round(percent * offset)
+//                                        - Math.round(percent * labelWidth / 2));
+//
+//                                if (progress > 0 && mediaPlayer != null && !mediaPlayer.isPlaying()) {
+//                                    clearMediaPlayer();
+//                                    contactViewHolder.ply_btn_rec.setImageDrawable(ContextCompat.getDrawable(context, R.mipmap.play_btn));
+//                                    seekBar.setProgress(0);
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//
+//                                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+//                                    mediaPlayer.seekTo(seekBar.getProgress());
+//                                }
+//                            }
+//                        });
 
                     } else if (my_type.startsWith("image/") || my_type.startsWith("video/")) {
                         contactViewHolder.rightMsgLayout.setVisibility(View.GONE);
