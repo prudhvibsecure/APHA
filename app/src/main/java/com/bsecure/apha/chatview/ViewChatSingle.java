@@ -1387,7 +1387,7 @@ public class ViewChatSingle extends AppCompatActivity implements View.OnClickLis
 //
 //                    removeAttachment(requestId);
 
-                    Toast.makeText(this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
 
 //                    fitem = null;
 //                    fview = null;

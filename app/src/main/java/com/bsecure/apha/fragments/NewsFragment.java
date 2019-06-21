@@ -314,8 +314,8 @@ public class NewsFragment extends ParentFragment implements JsonHandler, MemberL
                         adapter.notifyDataSetChanged();
                     }
                     getmemberList();
-                    Toast.makeText(context, "Network connection faild", Toast.LENGTH_SHORT).show();
-                   // getredAlert("Network connection faild", "0");
+                    Toast.makeText(context, "Network connection failed", Toast.LENGTH_SHORT).show();
+                   // getredAlert("Network connection failed", "0");
                     Log.e("prudhvi", "Conectivity Failure !!! ");
                 }
             } catch (NullPointerException e) {

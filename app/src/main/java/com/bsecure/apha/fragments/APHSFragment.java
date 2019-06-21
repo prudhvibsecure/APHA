@@ -235,7 +235,7 @@ public class APHSFragment extends ParentFragment implements View.OnClickListener
                 } else {
                     // callMessageRaed(false);
                     // dialog(false);
-                    Toast.makeText(context, "Network connection faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Network connection failed", Toast.LENGTH_SHORT).show();
                     Log.e("prudhvi", "Conectivity Failure !!! ");
                 }
             } catch (Exception e) {

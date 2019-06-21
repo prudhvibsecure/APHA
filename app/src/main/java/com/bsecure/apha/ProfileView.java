@@ -97,7 +97,7 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
 //        } else {
             ((TextView) layout.findViewById(R.id.profile_dest)).setText(SharedValues.getValue(getActivity(),"designation_name"));
 //        }
-
+        ((EditText) layout.findViewById(R.id.u_designation)).setText(SharedValues.getValue(getActivity(),"designation_name"));
         ((EditText) layout.findViewById(R.id.u_name)).setText(SharedValues.getValue(getActivity(), "sender_name"));
         ((EditText) layout.findViewById(R.id.u_name)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -385,7 +385,7 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
 
                 case -1: // failed
 
-                    Toast.makeText(getActivity(), "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
                     break;
 
                 case 1: // progressBar

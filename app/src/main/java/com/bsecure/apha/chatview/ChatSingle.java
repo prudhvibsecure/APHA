@@ -1429,7 +1429,7 @@ public class ChatSingle extends AppCompatActivity implements View.OnClickListene
 //
 //                    removeAttachment(requestId);
 
-                    Toast.makeText(this, "faild", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
 
 //                    fitem = null;
 //                    fview = null;

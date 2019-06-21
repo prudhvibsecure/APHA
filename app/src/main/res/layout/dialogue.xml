@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Send Message"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/ll_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:id="@+id/emji_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_emoji" />
+
+
+        <hani.momanii.supernova_emoji_library.Helper.EmojiconEditText
+            android:id="@+id/send_msg_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/roboto"
+            android:hint="Type a Message"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:scrollbars="vertical"
+            android:textColor="@color/transparent_black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ic_member"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="2dp"
+            android:background="@android:color/transparent"
+            android:padding="6dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_add_m"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/user_attach"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="2dp"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_attach" />
+
+        <ImageView
+            android:id="@+id/ic_camera"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="2dp"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_photo_icon"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_send_btn"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>

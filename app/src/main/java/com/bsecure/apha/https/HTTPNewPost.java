@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -69,7 +70,8 @@ public class HTTPNewPost {
     public void userRequest(String progressMsg, int requestId, final String url, final String postData, final int parserType) {
 
         this.requestId = requestId;
-
+        Log.i("req_url",url);
+        Log.i("post_data",postData);
         if (progressFlag)
              showProgress(progressMsg, context);
 
@@ -77,7 +79,6 @@ public class HTTPNewPost {
                 // showUserActionResult(-1, context.getString(R.string.nipcyns));
                 disableProgress();
                 progressFlag=false;
-                return;
             }
 
         new Thread(new Runnable() {
@@ -131,7 +132,7 @@ public class HTTPNewPost {
                         }
                         bytebuf = baos.toByteArray();
                         obj = new String(bytebuf, "UTF-8");
-
+                        Log.i("response",obj.toString());
                       //  Log.e("response::::", obj.toString() + "");
 
                         postUserAction(0, "");
@@ -142,14 +143,19 @@ public class HTTPNewPost {
                     postUserAction(-1, serverResponseMessage);
 
                 } catch (MalformedURLException me) {
+                    dismissProgress();
                     // postUserAction(-1, context.getString(R.string.iurl));
                 } catch (ConnectException e) {
+                    dismissProgress();
                     //postUserAction(-1, context.getString(R.string.snr1));
                 } catch (SocketException se) {
+                    dismissProgress();
                     //postUserAction(-1, context.getString(R.string.snr2));
                 } catch (SocketTimeoutException stex) {
+                    dismissProgress();
                     // postUserAction(-1, context.getString(R.string.sct));
                 } catch (Exception ex) {
+                    dismissProgress();
                     //postUserAction(-1, context.getString(R.string.snr3));
                 } finally {
                     if (inputStream != null)
