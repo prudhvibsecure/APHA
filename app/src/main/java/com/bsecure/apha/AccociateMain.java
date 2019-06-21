@@ -137,7 +137,7 @@ public class AccociateMain extends AppCompatActivity {
 
         navigationView = (NavigationView) findViewById(R.id.navigation);
         String member_number = SharedValues.getValue(this, "member_number");
-        if (member_number.equalsIgnoreCase("2" ) || member_number.equalsIgnoreCase("3" ) ) {
+        if (member_number.equalsIgnoreCase("4" )) {
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.m_dp_approvel).setVisible(true);
             nav_Menu.findItem(R.id.m_dp_mm).setVisible(true);

@@ -87,11 +87,7 @@ public class MembersChatFragment extends ParentFragment implements APMEMListAdap
         recyclerView = layout.findViewById(R.id.vip_list);
         vipModelArrayList = new ArrayList<>();
 
-        /*Dialog dialog = new Dialog(getActivity());
-        dialog.setCancelable(true);
-        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setContentView(R.layout.dialogue);
-        dialog.show();*/
+
         getVipList();
 
         return layout;
