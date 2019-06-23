@@ -10,6 +10,8 @@ import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,13 +24,14 @@ import com.bsecure.apha.models.VipModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Admin on 2018-12-04.
  */
 
-public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactViewHolder> {
+public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactViewHolder> implements Filterable {
 
 
     private TextDrawable.IBuilder builder = null;
@@ -39,6 +42,7 @@ public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactV
     private ContactAdapterListener listener;
 
     private List<VipModel> classModelList;
+    private List<VipModel> contactListFiltered;
     private SparseBooleanArray selectedItems;
     private SparseBooleanArray animationItemsIndex;
     private static int currentSelectedIndex = -1;
@@ -91,7 +95,7 @@ public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactV
                 TextDrawable ic1 = builder.build(classMode_lList.getVip_name().substring(0, 2), color);
 
                 contactViewHolder.imgProfile.setImageDrawable(ic1);
-            }else{
+            } else {
                 String path = Paths.up_load + classMode_lList.getImage();
                 Glide.with(context).load(path).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(contactViewHolder.imgProfile);
             }
@@ -155,7 +159,7 @@ public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactV
             tv_title = (TextView) v.findViewById(R.id.cl_name);
             section_tv = (TextView) v.findViewById(R.id.section_tv);
             imgProfile = (ImageView) v.findViewById(R.id.icon_profile);
-            contact_user_ll=v.findViewById(R.id.view_list_main_content);
+            contact_user_ll = v.findViewById(R.id.view_list_main_content);
             v.setOnLongClickListener(this);
 
         }
@@ -172,5 +176,37 @@ public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactV
 
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    classModelList = contactListFiltered;
+                } else {
+                    List<VipModel> filteredList = new ArrayList<>();
+                    for (VipModel row : contactListFiltered) {
+
+                        if (row.getVip_name().contains(charSequence) || row.getVip_name().toLowerCase().contains(charSequence) || row.getPhone_number().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    classModelList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = classModelList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                classModelList = (ArrayList<VipModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
 }
