@@ -24,6 +24,7 @@ import com.bsecure.apha.fragments.APHMembersFragment;
 import com.bsecure.apha.fragments.APHSROLESFragment;
 import com.bsecure.apha.fragments.Home;
 import com.bsecure.apha.fragments.HomeMembers;
+import com.bsecure.apha.fragments.MembersChatFragment;
 import com.bsecure.apha.fragments.ParentFragment;
 import com.bsecure.apha.fragments.ShowVIPFragment;
 import com.bsecure.apha.fragments.VIPSFragment;
@@ -48,6 +49,7 @@ public class AccociateMain extends AppCompatActivity {
     private APHMembersFragment aphMembersFragment = null;
     private ShowVIPFragment showVIPFragment = null;
     private VIPSFragment vipsFragment = null;
+    private MembersChatFragment membersChatFragment = null;
     private ProfileView profileView = null;
     private ActionBar actionBar = null;
     private Toolbar toolbar;
@@ -135,12 +137,14 @@ public class AccociateMain extends AppCompatActivity {
 
         navigationView = (NavigationView) findViewById(R.id.navigation);
         String member_number = SharedValues.getValue(this, "member_number");
-        if (member_number.equalsIgnoreCase("2")) {
+        if (member_number.equalsIgnoreCase("4" )) {
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.m_dp_approvel).setVisible(true);
+            nav_Menu.findItem(R.id.m_dp_mm).setVisible(true);
         } else {
             Menu nav_Menu = navigationView.getMenu();
             nav_Menu.findItem(R.id.m_dp_approvel).setVisible(false);
+            nav_Menu.findItem(R.id.m_dp_mm).setVisible(false);
         }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -203,6 +207,11 @@ public class AccociateMain extends AppCompatActivity {
                 if (homeMembers == null)
                     homeMembers = new HomeMembers();
                 swiftFragments(homeMembers, "homeMembers");
+                break;
+                case R.id.m_dp_mm:
+                if (membersChatFragment == null)
+                    membersChatFragment = new MembersChatFragment();
+                swiftFragments(membersChatFragment, "membersChatFragment");
                 break;
             default:
                 break;

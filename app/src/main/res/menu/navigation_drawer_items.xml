@@ -17,6 +17,11 @@
             android:id="@+id/m_dp_approvel"
             android:icon="@mipmap/ic_profile_menu_btn"
             android:title="Members List" />
+
+        <item
+            android:id="@+id/m_dp_mm"
+            android:icon="@mipmap/ic_profile_menu_btn"
+            android:title="Members" />
         <item
             android:id="@+id/user_guide"
             android:icon="@mipmap/ic_offer_menu_btn"

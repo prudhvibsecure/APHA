@@ -194,8 +194,8 @@ public class VIPAPHSFragment extends ParentFragment implements View.OnClickListe
                 } else {
                     // callMessageRaed(false);
                     // dialog(false);
-                   // getredAlert("Network connection faild");
-                    Toast.makeText(context, "Network connection faild", Toast.LENGTH_SHORT).show();
+                   // getredAlert("Network connection failed");
+                    Toast.makeText(context, "Network connection failed", Toast.LENGTH_SHORT).show();
                     Log.e("prudhvi", "Conectivity Failure !!! ");
                 }
             } catch (NullPointerException e) {

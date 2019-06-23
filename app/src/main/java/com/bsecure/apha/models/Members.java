@@ -2,7 +2,15 @@ package com.bsecure.apha.models;
 
 public class Members {
 
-    String member_id,member_name,reg_mobile_no,profile_image,member_number,business_name,added_date,approval_status;
+    String member_id,member_name,reg_mobile_no,profile_image,member_number,business_name,added_date,approval_status, district_id;
+
+    public String getDistrict_id() {
+        return district_id;
+    }
+
+    public void setDistrict_id(String district_id) {
+        this.district_id = district_id;
+    }
 
     public String getBusiness_name() {
         return business_name;

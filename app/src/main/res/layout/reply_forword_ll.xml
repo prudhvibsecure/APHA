@@ -14,7 +14,7 @@
         android:drawableTint="@color/transparent_black"
         android:fontFamily="@font/roboto"
         android:padding="10dp"
-        android:text="Reply"
+        android:text="Reply to All"
         android:textColor="@color/transparent_black"
         android:textSize="16sp" />
 
@@ -32,7 +32,7 @@
         android:drawableTint="@color/transparent_black"
         android:fontFamily="@font/roboto"
         android:padding="10dp"
-        android:text="Reply All"
+        android:text="Reply to All"
         android:visibility="gone"
         android:textColor="@color/transparent_black"
         android:textSize="16sp" />

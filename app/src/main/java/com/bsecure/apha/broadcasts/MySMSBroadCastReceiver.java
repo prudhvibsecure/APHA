@@ -44,7 +44,7 @@ public class MySMSBroadCastReceiver extends BroadcastReceiver {
                         LocalBroadcastManager.getInstance(context).sendBroadcast(smsIntent);
                     } else {
 
-                        Toast.makeText(context, "OTP faild", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "OTP failed", Toast.LENGTH_SHORT).show();
 
                     }
 
