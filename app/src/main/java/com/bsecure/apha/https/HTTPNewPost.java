@@ -218,7 +218,7 @@ public class HTTPNewPost {
 
     }
 
-    private boolean isNetworkAvailable() {
+    public boolean isNetworkAvailable() {
 
         ConnectivityManager manager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

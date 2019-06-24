@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -20,6 +22,7 @@
         android:id="@+id/ll_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/t_shape"
         android:layout_margin="20dp">
 
         <ImageView
@@ -43,6 +46,7 @@
             android:fontFamily="@font/roboto"
             android:hint="Type a Message"
             android:inputType="textMultiLine"
+            android:layout_gravity="center"
             android:maxLines="5"
             android:scrollbars="vertical"
             android:textColor="@color/transparent_black"
@@ -93,3 +97,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</RelativeLayout>

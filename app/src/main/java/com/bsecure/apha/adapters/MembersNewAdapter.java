@@ -96,13 +96,13 @@ public class MembersNewAdapter extends RecyclerView.Adapter<MembersNewAdapter.Co
             contactViewHolder.tv_title.setText((mycontactlist).getMember_name());
             //contactViewHolder.contact_ph.setText((mycontactlist).getReg_mobile_no());
 
-            String pic_url = mycontactlist.getProfile_image();
-
-            String f_path = Paths.up_load + pic_url;
-            if (pic_url.length() != 0 || !pic_url.isEmpty()) {
-                Glide.with(context).load(f_path).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(contactViewHolder.contact_image);
-
-            }
+//            String pic_url = mycontactlist.getProfile_image();
+//
+//            String f_path = Paths.up_load + pic_url;
+//            if (pic_url.length() != 0 || !pic_url.isEmpty()) {
+//                Glide.with(context).load(f_path).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(contactViewHolder.contact_image);
+//
+//            }
             String majic_user = mycontactlist.getMember_id();
             boolean value = selectedItems.get(position);
             contactViewHolder.itemView.setActivated(selectedItems.get(position, false));
@@ -114,7 +114,7 @@ public class MembersNewAdapter extends RecyclerView.Adapter<MembersNewAdapter.Co
     }
 
     private void applyClickEvents(ContactViewHolder contactViewHolder, final List<Members> matchesList, final int position, final boolean value, final CheckBox chk_name) {
-        contactViewHolder.contact_user_ll.setOnClickListener(new View.OnClickListener() {
+        contactViewHolder.row_user_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -174,8 +174,8 @@ public class MembersNewAdapter extends RecyclerView.Adapter<MembersNewAdapter.Co
             chk_name = (CheckBox) v.findViewById(R.id.chk_name);
             chk_name.setEnabled(false);
             contact_image = (ImageView) v.findViewById(R.id.contact_image);
-            row_user_ll = itemView.findViewById(R.id.row_user);
-            contact_user_ll = itemView.findViewById(R.id.contact_row);
+            row_user_ll = v.findViewById(R.id.row_user);
+            contact_user_ll = v.findViewById(R.id.contact_row);
 
         }
     }

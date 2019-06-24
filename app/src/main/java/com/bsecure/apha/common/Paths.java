@@ -2,9 +2,9 @@ package com.bsecure.apha.common;
 
 public class Paths {
 
-   // public static final String base = "https://bsecuresoftechsolutions.com/apha-api/";
-    public static final String base = "https://bsecuresoftechsolutions.com/apha-api-dev/";
-    //public static final String base = "https://bsecuresoftechsolutions.com/apha-api-beta/";
+   // public static final String base = "https://bsecuresoftechsolutions.com/apha-api/"; live
+    public static final String base = "https://bsecuresoftechsolutions.com/apha-api-dev/"; //dev
+    //public static final String base = "https://bsecuresoftechsolutions.com/apha-api-beta/"; //
     public static final String member_verify = base + "member_verify";
     public static final String otp_sc = base + "send_otp";
     public static final String otp_verify = base + "otp_verify";
@@ -29,6 +29,6 @@ public class Paths {
     public static final String get_sector_list = base + "mobile_app/get_sector_list";
     public static final String get_vip_members = base + "mobile_app/get_vip_members";
     public static final String pay_path = "https://bsecuresoftechsolutions.com/apha/payment?phone=";
-    public static final String view_user_members = "view_user_members";
+    public static final String view_user_members = base +"view_user_members";
 
 }

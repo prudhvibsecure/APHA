@@ -293,17 +293,17 @@ public class SendOtpScreenTwo extends AppCompatActivity implements JsonHandler {
     private void getRegisterAPI() {
         try {
 
-            String member = ((EditText) findViewById(R.id.f_member)).getText().toString();
+            String member = ((EditText) findViewById(R.id.f_member)).getText().toString().trim();
             if (member.length() == 0) {
                 ((EditText) findViewById(R.id.f_member)).setError("Please Enter Member Name");
                 return;
             }
-            String member_id = ((EditText) findViewById(R.id.f_member_id)).getText().toString();
+            String member_id = ((EditText) findViewById(R.id.f_member_id)).getText().toString().trim();
             if (member_id.length() == 0) {
                 ((EditText) findViewById(R.id.f_member_id)).setError("Please Enter Member ID");
                 return;
             }
-            reg_mobile_no = ((EditText) findViewById(R.id.f_number)).getText().toString();
+            reg_mobile_no = ((EditText) findViewById(R.id.f_number)).getText().toString().trim();
             if (reg_mobile_no.length() == 0) {
                 ((EditText) findViewById(R.id.f_number)).setError("Please Enter Mobile Number");
                 return;
@@ -312,7 +312,7 @@ public class SendOtpScreenTwo extends AppCompatActivity implements JsonHandler {
                 ((EditText) findViewById(R.id.f_number)).setError("Please Enter Valid Mobile Number");
                 return;
             }
-            String business = ((EditText) findViewById(R.id.f_business)).getText().toString();
+            String business = ((EditText) findViewById(R.id.f_business)).getText().toString().trim();
             if (business.length() == 0) {
                 ((EditText) findViewById(R.id.f_business)).setError("Please Enter Business Name");
                 return;
