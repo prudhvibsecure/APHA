@@ -285,15 +285,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     sender_member_number = arry_data[5];
                     receiver_member_number = arry_data[6];
                     sender_name = arry_data[7];
-                    if (receiver_member_number.equals("4") && !receiver_member_number1.equals("4")) {
-                        db_tables.messageData(messsages, msg_id, msg_date, sender_member_id, district_id, receiver_member_number, receiver_member_number1, sender_name, "0");
-                        db_tables.updateForword(msg_date);
-                        db_tables.updateMemberList(msg_date, messsages,receiver_member_number,district_id,"1");
-                    } else {
+//                    if (receiver_member_number.equals("4") && !receiver_member_number1.equals("4")) {
+//                        db_tables.messageData(messsages, msg_id, msg_date, sender_member_id, district_id, receiver_member_number, receiver_member_number1, sender_name, "0");
+////                        db_tables.updateForword(msg_date);
+//                        db_tables.updateMemberList(msg_date, messsages,receiver_member_number,district_id,"0");
+//                    } else {
                         db_tables.messageData(messsages, msg_id, msg_date, sender_member_id, district_id, sender_member_number, receiver_member_number, sender_name, "0");
-                        db_tables.updateForword(msg_date);
-                        db_tables.updateMemberList(msg_date, messsages,receiver_member_number,district_id,"1");
-                    }
+//                        db_tables.updateForword(msg_date);
+                        db_tables.updateMemberList(msg_date, messsages,receiver_member_number,district_id,"0");
+//                    }
                 }
 
                 MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());

@@ -794,6 +794,8 @@ public class ChatSingle extends AppCompatActivity implements View.OnClickListene
                 object.put("receiver_member_number", receiver_member_number);
                 object.put("sender_name", sender_name);
                 object.put("attatach_orgname", displayname);
+                object.put("user_id", "");
+
                 db_tables.messageData(msg, null, mesg_date_time, sender_member_id, district_id, sender_member_number, receiver_member_number, sender_name, "0");
                 db_tables.updateMemberList(mesg_date_time, msg, presedent_id, district_id, "0");
                 getChatMessages();

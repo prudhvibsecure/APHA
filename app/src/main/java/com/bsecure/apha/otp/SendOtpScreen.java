@@ -340,6 +340,7 @@ public class SendOtpScreen extends AppCompatActivity implements JsonHandler {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         Intent sc = new Intent(getApplicationContext(), SendOtpScreenTwo.class);
+                        sc.putExtra("mobile", reg_mobile_no);
                         startActivity(sc);
                         SendOtpScreen.this.finish();
                     }

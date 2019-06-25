@@ -168,6 +168,10 @@ public class MembersChatFragment extends ParentFragment implements MembersNewAda
                     break;
                 case 2:
                     displayname = null;
+                    member_id=null;
+                    member_number  =null;
+                    member_name =null;
+                    d_id  =null;
                     dialog.dismiss();
                     break;
             }
@@ -269,11 +273,16 @@ public class MembersChatFragment extends ParentFragment implements MembersNewAda
             object.put("message_date", mesg_date_time);
             object.put("sender_member_id", member_id);
             object.put("receiver_member_ids", "");
+            if(member_number.equalsIgnoreCase("1")) {
+                d_id = "1";
+            }
             object.put("district_id", d_id);
             object.put("sender_member_number", member_number);
             object.put("receiver_member_number", "4");
             object.put("sender_name", member_name);
             object.put("attatach_orgname", displayname);
+            object.put("user_id", "1");
+
             HTTPNewPost task = new HTTPNewPost(getActivity(), this);
             task.disableProgress();
             task.userRequest("", 2, Paths.send_message, object.toString(), 1);

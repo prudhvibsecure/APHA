@@ -75,6 +75,13 @@ public class SendOtpScreenTwo extends AppCompatActivity implements JsonHandler {
         state_spinner = findViewById(R.id.f_state);
         dist_spinner = findViewById(R.id.f_dist);
 
+        Intent in = getIntent();
+        if(in!= null)
+        {
+            reg_mobile_no = in.getStringExtra("mobile");
+        }
+        EditText fnum = findViewById(R.id.f_number);
+        fnum.setText(reg_mobile_no);
         mAuth = FirebaseAuth.getInstance();
 
         if (CheckingPermissionIsEnabledOrNot()) {
