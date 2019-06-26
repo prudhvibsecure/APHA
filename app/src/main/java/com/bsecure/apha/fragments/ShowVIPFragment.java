@@ -1,21 +1,36 @@
 package com.bsecure.apha.fragments;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,6 +51,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +60,10 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class ShowVIPFragment extends ParentFragment implements VipListAdapter.ContactAdapterListener, JsonHandler {
 
     private View layout;
-
+    Toolbar searchtollbar;
+    Menu search_menu;
+    MenuItem item_search;
+    SearchView searchView;
     private AccociateMain activity;
 
     private RecyclerView recyclerView;
@@ -69,6 +88,44 @@ public class ShowVIPFragment extends ParentFragment implements VipListAdapter.Co
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+
+        setHasOptionsMenu(true);
+
+        getActivity().invalidateOptionsMenu();
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.search_vv,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+
+
+
+            case R.id.searc_menu:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                    circleReveal(R.id.searchtoolbar, 1, true, true);
+                else
+                    searchtollbar.setVisibility(View.VISIBLE);
+
+                item_search.expandActionView();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle mArgs = getArguments();
 
@@ -81,7 +138,7 @@ public class ShowVIPFragment extends ParentFragment implements VipListAdapter.Co
         builder = TextDrawable.builder().beginConfig().toUpperCase().textColor(Color.WHITE).endConfig().round();
         recyclerView = layout.findViewById(R.id.vip_list);
         vipModelArrayList = new ArrayList<>();
-
+        setSearchtollbar();
         getVipList();
 
         return layout;
@@ -265,5 +322,166 @@ public class ShowVIPFragment extends ParentFragment implements VipListAdapter.Co
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+//search navigation code
+public void setSearchtollbar() {
+    searchtollbar = (Toolbar) layout.findViewById(R.id.searchtoolbar);
+    if (searchtollbar != null) {
+        searchtollbar.inflateMenu(R.menu.menu_search);
+        search_menu = searchtollbar.getMenu();
+
+        searchtollbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                    circleReveal(R.id.searchtoolbar, 1, true, false);
+                else
+                    searchtollbar.setVisibility(View.GONE);
+            }
+        });
+
+        item_search = search_menu.findItem(R.id.action_filter_search);
+
+        MenuItemCompat.setOnActionExpandListener(item_search, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                // Do something when collapsed
+//                    if (adapter != null) {
+//                        adapter.clear();
+//                        adapter.notifyDataSetChanged();
+//                        getListContacts(userContacts);
+//                    }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    circleReveal(R.id.searchtoolbar, 1, true, false);
+                } else
+                    searchtollbar.setVisibility(View.GONE);
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                // Do something when expanded
+                return true;
+            }
+        });
+
+        initSearchView();
+
+
+    } else
+        Log.d("toolbar", "setSearchtollbar: NULL");
+
+}
+
+    public void initSearchView() {
+        searchView = (SearchView) search_menu.findItem(R.id.action_filter_search).getActionView();
+        // Enable/Disable Submit button in the keyboard
+        searchView.setSubmitButtonEnabled(false);
+        // Change search close button image
+        ImageView closeButton = (ImageView) searchView.findViewById(R.id.search_close_btn);
+        closeButton.setImageResource(R.mipmap.ic_close);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchtollbar.setVisibility(View.VISIBLE);
+                item_search.collapseActionView();
+                searchView.clearFocus();
+                adapter.clear();
+                adapter.notifyDataSetChanged();
+                getVipList();
+            }
+        });
+        // set hint and the text colors
+        EditText txtSearch = ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text));
+        txtSearch.setHint("Search..");
+        txtSearch.setHintTextColor(Color.DKGRAY);
+        txtSearch.setTextColor(getResources().getColor(R.color.transparent_black));
+
+
+        AutoCompleteTextView searchTextView = (AutoCompleteTextView) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        try {
+            Field mCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
+            mCursorDrawableRes.setAccessible(true);
+            mCursorDrawableRes.set(searchTextView, R.drawable.search_cursor); //This sets the cursor resource ID to 0 or @null which will make it visible on white background
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                callSearch(query);
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                callSearch(newText);
+                return false;
+            }
+
+            public void callSearch(String query) {
+                if (adapter != null) {
+                    adapter.getFilter().filter(query);
+                }
+            }
+
+        });
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            item_search.collapseActionView();
+        }else {
+            super.onDestroyView();
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void circleReveal(int viewID, int posFromRight, boolean containsOverflow, final boolean isShow) {
+        final View myView = layout.findViewById(viewID);
+
+        int width = myView.getWidth();
+
+        if (posFromRight > 0)
+            width -= (posFromRight * getResources().getDimensionPixelSize(R.dimen.abc_action_button_min_width_material)) - (getResources().getDimensionPixelSize(R.dimen.abc_action_button_min_width_material) / 2);
+        if (containsOverflow)
+            width -= getResources().getDimensionPixelSize(R.dimen.abc_action_button_min_width_overflow_material);
+
+        int cx = width;
+        int cy = myView.getHeight() / 2;
+
+        Animator anim;
+        if (isShow)
+            anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, (float) width);
+        else
+            anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, (float) width, 0);
+
+        anim.setDuration((long) 220);
+
+        // make the view invisible when the animation is done
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (!isShow) {
+                    super.onAnimationEnd(animation);
+                    myView.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        // make the view visible and start the animation
+        if (isShow)
+            myView.setVisibility(View.VISIBLE);
+
+        // start the animation
+        anim.start();
+
+
     }
 }

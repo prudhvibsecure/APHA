@@ -50,6 +50,7 @@ public class VipListAdapter extends RecyclerView.Adapter<VipListAdapter.ContactV
     public VipListAdapter(List<VipModel> list, Context context, ContactAdapterListener listener) {
         this.context = context;
         this.classModelList = list;
+        this.contactListFiltered = list;
         this.listener = listener;
         selectedItems = new SparseBooleanArray();
         animationItemsIndex = new SparseBooleanArray();

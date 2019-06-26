@@ -96,6 +96,9 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
 //            ((TextView) layout.findViewById(R.id.profile_dest)).setText("State EC");
 //        } else {
             ((TextView) layout.findViewById(R.id.profile_dest)).setText(SharedValues.getValue(getActivity(),"designation_name"));
+        ((TextView) layout.findViewById(R.id.website)).setText(SharedValues.getValue(getActivity(),"website"));
+        ((TextView) layout.findViewById(R.id.email)).setText(SharedValues.getValue(getActivity(),"email"));
+        ((TextView) layout.findViewById(R.id.id)).setText(SharedValues.getValue(getActivity(),"member_id"));
 //        }
         ((EditText) layout.findViewById(R.id.u_designation)).setText(SharedValues.getValue(getActivity(),"designation_name"));
         ((EditText) layout.findViewById(R.id.u_name)).setText(SharedValues.getValue(getActivity(), "sender_name"));

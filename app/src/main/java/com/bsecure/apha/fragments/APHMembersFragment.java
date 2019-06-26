@@ -17,8 +17,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bsecure.apha.AccociateMain;
@@ -61,6 +64,10 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
     private TextDrawable.IBuilder builder = null;
     private ColorGenerator generator = ColorGenerator.MATERIAL;
     String designation_id, district_id;
+    String[] websites;
+    private String desc ="";
+    ListView list;
+    ArrayAdapter<String>wadapter;
 
     public APHMembersFragment() {
         // Required empty public constructor
@@ -250,9 +257,26 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
                                 if (url == null || url.isEmpty()) {
                                     ((TextView) m_dialog.findViewById(R.id.distet)).setText(Html.fromHtml("<u>No Website</u>"));
                                 } else {
-                                    ((TextView) m_dialog.findViewById(R.id.distet)).setText(Html.fromHtml("<u>" + jsonobject.optString("website") + "</u>"));
+                                    websites = jsonobject.optString("website").split(",");
+                                    list = m_dialog.findViewById(R.id.list);
+                                    wadapter = new ArrayAdapter<String>(getActivity(), R.layout.website, R.id.text, websites);
+                                    list.setAdapter(wadapter);
+                                    wadapter.notifyDataSetChanged();
+
+                                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                            getpksview(websites[position]);
+                                        }
+                                    });
+                                    /*for(String s:websites) {
+                                        desc = desc+s+"<br>";
+                                    }
+                                    desc = desc.substring(0,desc.length()-4);*/
+                                    //((TextView) m_dialog.findViewById(R.id.distet)).setText(Html.fromHtml("<u>" + jsonobject.optString("website") + "</u>"));
+                                    //((TextView) m_dialog.findViewById(R.id.distet)).setText(Html.fromHtml(desc));
                                 }
-                                ((TextView) m_dialog.findViewById(R.id.distet)).setOnClickListener(new View.OnClickListener() {
+                                /*((TextView) m_dialog.findViewById(R.id.distet)).setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         if (url == null || url.isEmpty()) {
@@ -263,7 +287,16 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
                                         }
 
                                     }
-                                });
+                                });*/
+                                ((TextView) m_dialog.findViewById(R.id.mail)).setVisibility(View.VISIBLE);
+                                if(jsonobject.optString("email_id").isEmpty())
+                                {
+                                    ((TextView) m_dialog.findViewById(R.id.mail)).setText(jsonobject.optString("email"));
+                                }
+                                else
+                                {
+                                    ((TextView) m_dialog.findViewById(R.id.mail)).setText("No Email ID");
+                                }
                                 if (jsonobject.optString("profile_image").isEmpty()) {
                                     ((ImageView) m_dialog.findViewById(R.id.user_profile_photo)).setImageDrawable(ic1);
                                 } else {

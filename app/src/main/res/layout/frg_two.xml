@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <include
+        layout="@layout/search_toolbar"
+        android:visibility="gone" />
     <TextView
         android:id="@+id/counter"
         android:layout_width="match_parent"
