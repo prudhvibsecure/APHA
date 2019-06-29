@@ -79,7 +79,10 @@ public class VIPAPHSFragment extends ParentFragment implements View.OnClickListe
         }
         return layout;
     }
-
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
     private void getStudents() {
 
         try {

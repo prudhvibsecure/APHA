@@ -143,7 +143,10 @@ public class ShowVIPFragment extends ParentFragment implements VipListAdapter.Co
 
         return layout;
     }
-
+    @Override
+    public String getFragmentName() {
+        return name;
+    }
     private void getVipList() {
 
         try {

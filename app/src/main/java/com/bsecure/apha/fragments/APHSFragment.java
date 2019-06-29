@@ -101,7 +101,10 @@ public class APHSFragment extends ParentFragment implements View.OnClickListener
         super.onResume();
 
     }
-
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -203,9 +206,11 @@ public class APHSFragment extends ParentFragment implements View.OnClickListener
         if (SharedValues.getValue(getActivity(), "paid_status").equalsIgnoreCase("1") && SharedValues.getValue(getActivity(), "subscription_status").equalsIgnoreCase("1") && SharedValues.getValue(getActivity(), "approval_status").equalsIgnoreCase("1")) {
             String member_num = matchesList.get(position).getMember_number();
             if (member_num.equalsIgnoreCase("0")) {
-                activity.getRolesList("2", matchesList.get(position).getId());
+                //activity.getRolesList("2", matchesList.get(position).getId());
+                activity.getRolesList("2", matchesList.get(position).getId(), matchesList.get(position).getName());
             } else {
-                activity.getRolesList("1", matchesList.get(position).getId());
+                //activity.getRolesList("1", matchesList.get(position).getId());
+                activity.getRolesList("1", matchesList.get(position).getId(), matchesList.get(position).getName());
             }
         } else if (SharedValues.getValue(getActivity(), "approval_status").equalsIgnoreCase("0")) {
             getredAlert("Your Approval Is Pending \nPlease Contact Admin", "0");

@@ -178,4 +178,8 @@ public class ApprovelFragment extends ParentFragment implements ApproveDoneAdapt
             isViewShown = false;
         }
     }
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
 }

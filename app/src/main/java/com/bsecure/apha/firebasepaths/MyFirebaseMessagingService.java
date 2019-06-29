@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.bsecure.apha.AccociateMain;
+import com.bsecure.apha.chatview.ChatSingle;
 import com.bsecure.apha.database.DB_Tables;
 import com.bsecure.apha.utils.SharedValues;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -297,8 +298,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
 
                 MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
-                Intent intent = new Intent(this, AccociateMain.class);
-
+                Intent intent = new Intent(this, ChatSingle.class);
+                intent.putExtra("member_number", SharedValues.getValue(this, "member_number"));
+                intent.putExtra("presedent_id", SharedValues.getValue(this, "member_number"));
+                intent.putExtra("id", district_id);
+                intent.putExtra("sender_name", sender_name);
+                intent.putExtra("sender_member_id", SharedValues.getValue(this, "member_id"));
+                intent.putExtra("receiver_member_number", receiver_member_number);
+                intent.putExtra("name", sender_name);
                 //if there is no image
                 if (imageUrl.equals("null")||imageUrl.isEmpty()) {
                     mNotificationManager.showSmallNotification(sender_name, messsages, intent);

@@ -158,6 +158,6 @@ public class Home extends ParentFragment {
 
     @Override
     public String getFragmentName() {
-        return "";
+        return "APHA";
     }
 }

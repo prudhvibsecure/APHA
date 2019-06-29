@@ -52,7 +52,10 @@ public class MembersFragment extends ParentFragment implements ApproveMembersAda
     public MembersFragment() {
         // Required empty public constructor
     }
-
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
     public static MembersFragment newInstance() {
         return new MembersFragment();
     }

@@ -393,6 +393,9 @@ public class SendOtpScreenTwo extends AppCompatActivity implements JsonHandler {
                         String expiry_date = object.optString("expiry_date");
                         String user_pic = object.optString("profile_image");
                         String designation_name = object.optString("designation_name");
+                        String website = object.optString("website");
+                        String email = object.optString("email");
+
 
                         SharedValues.saveValue(this, "member_id", member_id);
                         SharedValues.saveValue(this, "reg_mobile_no", reg_mobile_no);
@@ -408,6 +411,9 @@ public class SendOtpScreenTwo extends AppCompatActivity implements JsonHandler {
                         SharedValues.saveValue(this, "state", state);
                         SharedValues.saveValue(this, "district", district);
                         SharedValues.saveValue(this, "designation_name", designation_name);
+                        SharedValues.saveValue(this, "website", website);
+                        SharedValues.saveValue(this, "email", email);
+
                         db_tables.addToMembers(member_id, member_name, approval_status, member_number, paid_status, subscription_status, business_name, reg_mobile_no, state_id, state, district_id, district, added_date, expiry_date, user_pic);
                         getSweetAlert(object.optString("statusdescription"));
                     } else {

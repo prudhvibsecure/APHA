@@ -87,7 +87,10 @@ public class VIPSFragment extends ParentFragment implements APHAListAdapter.Cont
         task.userRequest("Processing...", 1, Paths.get_sector_list, "", 1);
     }
 
-
+    @Override
+    public String getFragmentName() {
+        return name;
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -179,5 +182,10 @@ public class VIPSFragment extends ParentFragment implements APHAListAdapter.Cont
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 }

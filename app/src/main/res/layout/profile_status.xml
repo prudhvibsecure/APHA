@@ -16,14 +16,23 @@
         android:layout_height="180dp"
         android:background="@color/colorPrimaryDark">
 
-        <com.bsecure.apha.common.CircularImageView
+       <!-- <com.bsecure.apha.common.CircularImageView
             android:id="@+id/pf_img"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:background="@mipmap/user_pic"
-            android:src="@mipmap/user_pic" />
+            android:src="@mipmap/user_pic" />-->
+
+        <ImageView
+            android:id="@+id/pf_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:background="@mipmap/ic_splashscreen_bg"/>
 
         <TextView
             android:id="@+id/profile_dest"
@@ -67,6 +76,7 @@
                 android:cursorVisible="false"
                 android:fontFamily="@font/roboto"
                 android:hint="Enter Name"
+                android:textSize="16sp"
                 android:inputType="textPersonName"
                 android:padding="8dp"
                 android:singleLine="true"
@@ -91,6 +101,7 @@
                 android:hint="Enter Designation"
                 android:inputType="textPersonName"
                 android:padding="8dp"
+                android:focusable="false"
                 android:singleLine="true"
                 android:textColor="@color/transparent_black" />
 
@@ -135,9 +146,8 @@
                 android:background="@drawable/edite_backview"
                 android:fontFamily="@font/roboto"
                 android:hint="Enter business name"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:padding="8dp"
-                android:singleLine="true"
                 android:textColor="@color/transparent_black" />
 
             <TextView
@@ -178,10 +188,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edite_backview"
-                android:clickable="false"
-                android:cursorVisible="false"
+                android:clickable="true"
+                android:cursorVisible="true"
                 android:editable="false"
-                android:focusable="false"
+                android:focusable="true"
                 android:fontFamily="@font/roboto"
                 android:inputType="text"
                 android:padding="8dp"
@@ -202,10 +212,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edite_backview"
-                android:clickable="false"
-                android:cursorVisible="false"
+                android:clickable="true"
+                android:cursorVisible="true"
                 android:editable="false"
-                android:focusable="false"
+                android:focusable="true"
                 android:fontFamily="@font/roboto"
                 android:inputType="text"
                 android:padding="8dp"
@@ -218,7 +228,7 @@
                 android:background="@drawable/shape_name"
                 android:fontFamily="@font/roboto"
                 android:padding="8dp"
-                android:text="Member ID"
+                android:text="Membership No."
                 android:textSize="7pt" />
 
             <EditText

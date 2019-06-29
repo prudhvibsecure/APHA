@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bsecure.apha.AccociateMain;
 import com.bsecure.apha.R;
@@ -37,7 +38,7 @@ public class APHSROLESFragment extends ParentFragment implements View.OnClickLis
     private AccociateMain activity;
     private DB_Tables db_tables;
     String member_number, sender_member_id, receiver_member_ids, district_id, sender_name;
-    String action = "0", designation_type;
+    String action = "0", designation_type,name;
     private APHAListAdapter adapter;
     private RecyclerView recyclerView;
     private ArrayList<MemberModel> memberModelArrayList;
@@ -62,6 +63,7 @@ public class APHSROLESFragment extends ParentFragment implements View.OnClickLis
         if (mArgs != null) {
             designation_type = mArgs.getString("dest_key");
             district_id = mArgs.getString("_id");
+            name = mArgs.getString("name");
         }
         layout = inflater.inflate(R.layout.frg_three, container, false);
         db_tables = new DB_Tables(getActivity());
@@ -83,6 +85,11 @@ public class APHSROLESFragment extends ParentFragment implements View.OnClickLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String getFragmentName() {
+        return name;
     }
 
     @Override

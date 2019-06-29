@@ -18,7 +18,7 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop" />
 
-        <com.bsecure.apha.common.CircularImageView
+       <!-- <com.bsecure.apha.common.CircularImageView
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -26,6 +26,18 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-60dp"
             android:background="@mipmap/user_pic"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop" />-->
+
+         <ImageView
+            android:id="@+id/user_profile_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-60dp"
+            android:background="@mipmap/ic_splashscreen_bg"
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop" />
@@ -201,12 +213,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/distet"
-                            android:layout_width="0dp"
+                            android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/titleinfo"
                             android:layout_marginLeft="10dp"
@@ -219,19 +230,22 @@
                             android:paddingTop="10dp"
                             android:textColor="@color/transparent_black"
                             android:textSize="15dp"
-                            android:visibility="gone"
-                            android:layout_weight=".05"/>
+                            android:visibility="visible" />
 
                         <ListView
                             android:id="@+id/list"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:nestedScrollingEnabled="true"
-                            android:layout_weight=".95"/>
+                            android:layout_marginTop="5dp"
+                            android:dividerHeight="1dp"
+                            android:divider="@color/transparent_gray"
+                            />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
             </android.support.v7.widget.CardView>
         </LinearLayout>
 

@@ -56,6 +56,7 @@ public class AccociateMain extends AppCompatActivity {
     private NavigationView navigationView = null;
     private View drawerHeader;
     private IntentFilter filter;
+    private TextView tv_titile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,6 @@ public class AccociateMain extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         fragStack = new Stack<ParentFragment>();
@@ -163,6 +163,7 @@ public class AccociateMain extends AppCompatActivity {
         drawerHeader = navigationView.inflateHeaderView(R.layout.header_top);
 
         ((TextView) drawerHeader.findViewById(R.id.user_name)).setText("APHA");
+        tv_titile=findViewById(R.id.title_name);
     }
 
     public void onNavigationDrawerItemSelected(int menuId) {
@@ -246,6 +247,8 @@ public class AccociateMain extends AppCompatActivity {
 
         trans.commitAllowingStateLoss();
         trans = null;
+        String titile=tv_titile.getText().toString();
+        tv_titile.setText(titile);
         // getSupportActionBar().setTitle(frag.getFragmentName());
         if (!(frag instanceof Home))
             fragStack.push((ParentFragment) frag);
@@ -308,6 +311,7 @@ public class AccociateMain extends AppCompatActivity {
                 trans.show(pf1);
                 trans.commit();
 
+                tv_titile.setText(pf1.getFragmentName());
                 // getSupportActionBar().setTitle(pf1.getFragmentName());
                 return true;
             }
@@ -360,25 +364,41 @@ public class AccociateMain extends AppCompatActivity {
                 .show();
     }
 
-    public void getRolesList(String dest_type, String Id) {
+    public void getRolesList(String dest_type, String Id,String name) {
+        tv_titile.setText(name);
         Bundle bundle = new Bundle();
         bundle.putString("dest_key", dest_type);
         bundle.putString("_id", Id);
+        bundle.putString("name", name);
         aphsrolesFragment = new APHSROLESFragment();
         aphsrolesFragment.setArguments(bundle);
         swiftFragments(aphsrolesFragment, "aphsrolesFragment");
     }
 
+    /*public void getRolesList(String dest_type, String Id, String name) {
+        Bundle bundle = new Bundle();
+        bundle.putString("dest_key", dest_type);
+        bundle.putString("_id", Id);
+        ((TextView) findViewById(R.id.title_name)).setText(name);
+        aphsrolesFragment = new APHSROLESFragment();
+        aphsrolesFragment.setArguments(bundle);
+        swiftFragments(aphsrolesFragment, "aphsrolesFragment");
+    }*/
+
     public void getRolesMemberData(List<MemberModel> matchesList, int position, String id) {
+        tv_titile.setText(matchesList.get(position).getName());
         Bundle bundle = new Bundle();
         bundle.putString("dest_key", matchesList.get(position).getId());
         bundle.putString("district_id", id);
+        bundle.putString("name", matchesList.get(position).getName());
         aphMembersFragment = new APHMembersFragment();
         aphMembersFragment.setArguments(bundle);
         swiftFragments(aphMembersFragment, "aphMembersFragment");
     }
 
     public void getVipView(String id, String name) {
+        //
+        tv_titile.setText(name);
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
         bundle.putString("name", name);
@@ -389,6 +409,7 @@ public class AccociateMain extends AppCompatActivity {
     }
 
     public void showSectors(List<MemberModel> matchesList, String id, int pos) {
+       tv_titile.setText(matchesList.get(pos).getName());
         Bundle bundle = new Bundle();
         bundle.putString("sector_id", matchesList.get(pos).getId());
         bundle.putString("district_id", id);

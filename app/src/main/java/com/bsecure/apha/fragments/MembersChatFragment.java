@@ -92,7 +92,10 @@ public class MembersChatFragment extends ParentFragment implements MembersNewAda
     public MembersChatFragment() {
         // Required empty public constructor
     }
-
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
     public static MembersChatFragment newInstance() {
         return new MembersChatFragment();
     }
@@ -167,12 +170,21 @@ public class MembersChatFragment extends ParentFragment implements MembersNewAda
                     }
                     break;
                 case 2:
+
                     displayname = null;
                     member_id=null;
                     member_number  =null;
                     member_name =null;
                     d_id  =null;
-                    dialog.dismiss();
+                    //dialog.dismiss();
+                    JSONObject object2 = new JSONObject(results.toString());
+                    if (object2.optString("statuscode").equalsIgnoreCase("200")) {
+                        Toast.makeText(activity, "Message Sent Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(activity, "Message Sending failed", Toast.LENGTH_SHORT).show();
+                    }
                     break;
             }
 
@@ -226,7 +238,9 @@ public class MembersChatFragment extends ParentFragment implements MembersNewAda
                 if (msg.length() == 0) {
                     return;
                 }
+                dialog.dismiss();
                 getSndMsg(msg);
+
                 break;
             case R.id.user_attach:
                 checkPermission();

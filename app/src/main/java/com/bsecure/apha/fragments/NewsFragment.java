@@ -205,7 +205,10 @@ public class NewsFragment extends ParentFragment implements JsonHandler, MemberL
     public void onFailure(String errorCode, int requestType) {
 
     }
-
+    @Override
+    public String getFragmentName() {
+        return "APHA";
+    }
     @Override
     public void onMessageRowClicked(List<MemberModel> matchesList, int position) {
 

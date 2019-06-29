@@ -63,7 +63,7 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
     private Dialog m_dialog;
     private TextDrawable.IBuilder builder = null;
     private ColorGenerator generator = ColorGenerator.MATERIAL;
-    String designation_id, district_id;
+    String designation_id, district_id,name;
     String[] websites;
     private String desc ="";
     ListView list;
@@ -89,6 +89,7 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
         if (mArgs != null) {
             designation_id = mArgs.getString("dest_key");
             district_id = mArgs.getString("district_id");
+            name = mArgs.getString("name");
         }
         layout = inflater.inflate(R.layout.frg_two, container, false);
         builder = TextDrawable.builder().beginConfig().toUpperCase().textColor(Color.WHITE).endConfig().round();
@@ -113,7 +114,10 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
         }
     }
 
-
+    @Override
+    public String getFragmentName() {
+        return name;
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -372,4 +376,5 @@ public class APHMembersFragment extends ParentFragment implements APMEMListAdapt
             // permissions this app might request
         }
     }
+
 }

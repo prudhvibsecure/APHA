@@ -43,7 +43,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class ProfileView extends ParentFragment implements JsonHandler, IDownloadCallback {
 
     ImageView contact_image;
-    private String imagepath = null, fileName = "", ex_v;
+    private String imagepath = null, fileName = "", ex_v, website, email;
     private Bitmap bitmap = null;
     private Uri uri;
     String pic_name;
@@ -170,6 +170,9 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
             getError("Please enter business name");
             return;
         }
+
+        website = ((TextView) layout.findViewById(R.id.website)).getText().toString();
+        email =  ((TextView) layout.findViewById(R.id.email)).getText().toString();
         try {
 
             JSONObject object = new JSONObject();
@@ -177,6 +180,8 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
             object.put("business_name", u_bus_n);
             object.put("profile_image", fileName);
             object.put("reg_mobile_no", SharedValues.getValue(getActivity(), "reg_mobile_no"));
+            object.put("website", website);
+            object.put("email", email);
             HTTPNewPost task = new HTTPNewPost(getActivity(), this);
             task.userRequest("Processing...", 1, Paths.update_member, object.toString(), 1);
         } catch (Exception e) {
@@ -212,6 +217,9 @@ public class ProfileView extends ParentFragment implements JsonHandler, IDownloa
                         SharedValues.saveValue(getActivity(), "sender_name", object.optString("member_name"));
                         SharedValues.saveValue(getActivity(), "business_name", object.optString("business_name"));
                         SharedValues.saveValue(getActivity(), "user_pic", pic_name);
+                        SharedValues.saveValue(getActivity(), "website", website);
+                        SharedValues.saveValue(getActivity(), "email", email);
+
                         Toast.makeText(getActivity(), object.optString("statusdescription"), Toast.LENGTH_SHORT).show();
                         activity.onKeyDown(4, null);
                     }
